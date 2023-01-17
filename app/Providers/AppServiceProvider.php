@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\PostController;
 use App\Modules\Post\Repository\PostRepository;
 use App\Modules\Post\Repository\PostRepositoryImpl;
 use App\Modules\Post\Service\PostService;
@@ -17,8 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(PostService::class, PostServiceImpl::class);
-        $this->app->bind(PostRepository::class, PostRepositoryImpl::class);
+        // $this->app->bind(PostService::class, PostServiceImpl::class);
+        // $this->app->bind(PostRepository::class, PostRepositoryImpl::class);
+        $this->app->when(PostController::class)
+            ->needs(PostService::class)
+            ->give(PostServiceImpl::class);
+        $this->app->when(PostServiceImpl::class)
+            ->needs(PostRepository::class)
+            ->give(PostRepositoryImpl::class);
     }
 
     /**
