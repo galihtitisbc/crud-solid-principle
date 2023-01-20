@@ -10,6 +10,7 @@ use App\Modules\Post\Service\PostService;
 class PostController extends Controller
 {
     private $postService;
+
     function __construct(PostService $postService)
     {
         $this->postService = $postService;
@@ -19,19 +20,22 @@ class PostController extends Controller
     {
         return response()->json([
             "status" => true,
-            "data"  => $this->postService->getAllPost()
+            "data" => $this->postService->getAllPost()
         ]);
     }
+
     public function store(PostCreateRequest $request)
     {
         $data = $request->validated();
         return $this->postService->createPost($data);
     }
+
     public function update(Post $post, PostCreateRequest $request)
     {
         $data = $request->validated();
         return $this->postService->updatePost($post, $data);
     }
+
     public function delete(Post $post)
     {
         return $this->postService->deletePost($post);
