@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Http\Requests\PostCreateRequest;
+use App\Models\Post;
 use App\Modules\Post\Service\PostService;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -28,6 +28,11 @@ class PostController extends Controller
     {
         $data = $request->validated();
         return $this->postService->createPost($data);
+    }
+
+    public function getPostById($id)
+    {
+        return $this->postService->getPostById($id);
     }
 
     public function update(Post $post, PostCreateRequest $request)

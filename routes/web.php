@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PolicyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [PolicyController::class, 'index']);
+Route::post('/tambah', [PolicyController::class, 'tambah']);
