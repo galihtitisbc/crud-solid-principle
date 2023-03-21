@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 Route::get('/home', [PolicyController::class, 'index']);
 Route::post('/tambah', [PolicyController::class, 'tambah']);
+Route::post('/export', [PolicyController::class, 'export']);

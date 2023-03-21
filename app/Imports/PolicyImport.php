@@ -4,8 +4,10 @@ namespace App\Imports;
 
 use App\Models\PolicyData;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class PolicyImport implements ToModel
+class PolicyImport implements ToModel, WithBatchInserts, WithChunkReading
 {
     /**
      * @param array $row
@@ -29,6 +31,10 @@ class PolicyImport implements ToModel
     }
     public function chunkSize(): int
     {
-        return 250;
+        return 1000;
+    }
+    public function batchSize(): int
+    {
+        return 1000;
     }
 }

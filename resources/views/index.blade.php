@@ -17,10 +17,14 @@
             </div>
         @endif
         @if (Session::get('gagal'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-danger" role="alert">
                 {{ Session::get('gagal') }}
             </div>
         @endif
+        <form action="/export" method="post">
+            @csrf
+            <button type="submit" class="btn btn-success">Export</button>
+        </form>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Launch demo modal
